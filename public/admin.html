@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RemoteRise Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f172a;--card:#1e293b;--border:#334155;--primary:#3b82f6;--text:#f1f5f9;--sub:#94a3b8;--success:#10b981;--warning:#f59e0b;--error:#ef4444}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;min-height:100vh}
+.topbar{background:var(--card);border-bottom:1px solid var(--border);padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+.topbar h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:800}
+.topbar h1 span{color:var(--primary)}
+.topbar-actions{display:flex;gap:10px}
+.btn{padding:8px 16px;border-radius:8px;border:none;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--sub)}
+.btn-danger{background:var(--error);color:#fff}
+.btn:hover{opacity:.85;transform:translateY(-1px)}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;padding:24px;max-width:1200px;margin:0 auto}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px}
+.stat-card .num{font-family:'Plus Jakarta Sans',sans-serif;font-size:32px;font-weight:800;color:var(--primary)}
+.stat-card .label{font-size:13px;color:var(--sub);margin-top:4px}
+.controls{padding:0 24px;max-width:1200px;margin:0 auto 16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.search-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 14px;color:var(--text);font-family:'Outfit',sans-serif;font-size:14px;width:280px;outline:none}
+.search-box:focus{border-color:var(--primary)}
+.filter-select{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 14px;color:var(--text);font-family:'Outfit',sans-serif;font-size:14px;outline:none;cursor:pointer}
+.table-wrap{padding:0 24px;max-width:1200px;margin:0 auto;overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--border)}
+th{background:#0f172a;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--sub);padding:14px 16px;text-align:left;white-space:nowrap}
+td{padding:12px 16px;font-size:13px;border-top:1px solid var(--border);color:var(--sub);white-space:nowrap}
+tr:hover td{background:rgba(59,130,246,.05)}
+.badge{padding:4px 10px;border-radius:100px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.badge-new{background:rgba(59,130,246,.15);color:#60a5fa}
+.badge-contacted{background:rgba(245,158,11,.15);color:#fbbf24}
+.badge-training{background:rgba(139,92,246,.15);color:#a78bfa}
+.badge-placed{background:rgba(16,185,129,.15);color:#34d399}
+.badge-rejected{background:rgba(239,68,68,.15);color:#f87171}
+.name-cell{color:var(--text);font-weight:600}
+.status-select{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:4px 8px;color:var(--text);font-size:12px;cursor:pointer;outline:none}
+.empty{text-align:center;padding:60px 20px;color:var(--sub)}
+.empty .icon{font-size:48px;margin-bottom:16px}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;max-width:560px;width:90%;max-height:80vh;overflow-y:auto}
+.modal h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:18px;font-weight:800;margin-bottom:16px}
+.modal-row{display:flex;gap:8px;margin-bottom:10px}
+.modal-label{font-size:12px;color:var(--sub);min-width:120px;font-weight:600}
+.modal-value{font-size:13px;color:var(--text)}
+.modal-close{float:right;background:none;border:none;color:var(--sub);font-size:20px;cursor:pointer}
+.footer{text-align:center;padding:32px;font-size:12px;color:var(--sub)}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <h1>🚀 Remote<span>Rise</span> Admin</h1>
+  <div class="topbar-actions">
+    <a href="/api/admin/export" class="btn btn-outline">📥 Export CSV</a>
+    <a href="/" class="btn btn-outline">📋 View Form</a>
+    <button class="btn btn-primary" onclick="loadData()">🔄 Refresh</button>
+  </div>
+</div>
+<div class="stats-grid" id="statsGrid">
+  <div class="stat-card"><div class="num" id="statTotal">-</div><div class="label">Total Registrations</div></div>
+  <div class="stat-card"><div class="num" id="statToday" style="color:#10b981">-</div><div class="label">Today</div></div>
+  <div class="stat-card"><div class="num" id="statWeek" style="color:#f59e0b">-</div><div class="label">This Week</div></div>
+  <div class="stat-card"><div class="num" id="statNew" style="color:#60a5fa">-</div><div class="label">New / Pending</div></div>
+</div>
+<div class="controls">
+  <input class="search-box" id="searchBox" placeholder="🔍 Search by name, email, phone, college..." oninput="debounceSearch()">
+  <select class="filter-select" id="statusFilter" onchange="loadData()">
+    <option value="">All Status</option>
+    <option value="new">New</option>
+    <option value="contacted">Contacted</option>
+    <option value="training">Training</option>
+    <option value="placed">Placed</option>
+    <option value="rejected">Rejected</option>
+  </select>
+  <span style="font-size:12px;color:var(--sub)" id="countLabel"></span>
+</div>
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>#</th><th>Name</th><th>WhatsApp</th><th>Email</th><th>College</th><th>Job Types</th><th>Status</th><th>Submitted</th><th>Actions</th></tr></thead>
+    <tbody id="tableBody"><tr><td colspan="9" class="empty"><div class="icon">📋</div>Loading...</td></tr></tbody>
+  </table>
+</div>
+<div class="modal-overlay" id="detailModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h2>📋 Registration Details</h2>
+    <div id="modalContent"></div>
+  </div>
+</div>
+<div class="footer">RemoteRise Admin Dashboard · Data stored locally in SQLite</div>
+<script>
+const creds=btoa(prompt('Enter admin username')+':'+prompt('Enter admin password'));
+const headers={'Authorization':'Basic '+creds,'Accept':'application/json','Content-Type':'application/json'};
+let searchTimer;
+function debounceSearch(){clearTimeout(searchTimer);searchTimer=setTimeout(loadData,300)}
+async function loadData(){
+  try{
+    const search=document.getElementById('searchBox').value;
+    const status=document.getElementById('statusFilter').value;
+    let url='/api/admin/registrations?';
+    if(search)url+='search='+encodeURIComponent(search)+'&';
+    if(status)url+='status='+status+'&';
+    const[regRes,statRes]=await Promise.all([fetch(url,{headers}),fetch('/api/admin/stats',{headers})]);
+    if(regRes.status===401){alert('Invalid credentials. Please reload.');return}
+    const reg=await regRes.json();const stat=await statRes.json();
+    document.getElementById('statTotal').textContent=stat.data.total;
+    document.getElementById('statToday').textContent=stat.data.today;
+    document.getElementById('statWeek').textContent=stat.data.thisWeek;
+    const newCount=stat.data.byStatus.find(s=>s.status==='new');
+    document.getElementById('statNew').textContent=newCount?newCount.count:0;
+    document.getElementById('countLabel').textContent=reg.count+' results';
+    const tb=document.getElementById('tableBody');
+    if(!reg.data.length){tb.innerHTML='<tr><td colspan="9" class="empty"><div class="icon">📭</div>No registrations found</td></tr>';return}
+    tb.innerHTML=reg.data.map(r=>`<tr>
+      <td>${r.id}</td>
+      <td class="name-cell">${esc(r.full_name)}</td>
+      <td><a href="https://wa.me/91${r.whatsapp_number}" target="_blank" style="color:#25d366;text-decoration:none">${r.whatsapp_number}</a></td>
+      <td>${esc(r.email)}</td>
+      <td>${esc(r.college_name)}</td>
+      <td>${esc(r.job_types||'—')}</td>
+      <td><select class="status-select" onchange="updateStatus(${r.id},this.value)">
+        ${['new','contacted','training','placed','rejected'].map(s=>`<option value="${s}"${r.status===s?' selected':''}>${s}</option>`).join('')}
+      </select></td>
+      <td>${new Date(r.submitted_at).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'2-digit',hour:'2-digit',minute:'2-digit'})}</td>
+      <td><button class="btn btn-outline" style="padding:4px 10px;font-size:11px" onclick="viewDetail(${r.id})">View</button>
+      <button class="btn btn-danger" style="padding:4px 10px;font-size:11px" onclick="deleteReg(${r.id})">✕</button></td>
+    </tr>`).join('');
+  }catch(e){console.error(e);document.getElementById('tableBody').innerHTML='<tr><td colspan="9" class="empty">Error loading data</td></tr>'}
+}
+function esc(s){const d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
+async function updateStatus(id,status){
+  await fetch(`/api/admin/registrations/${id}/status`,{method:'PATCH',headers,body:JSON.stringify({status})});
+  loadData();
+}
+async function deleteReg(id){
+  if(!confirm('Delete this registration?'))return;
+  await fetch(`/api/admin/registrations/${id}`,{method:'DELETE',headers});
+  loadData();
+}
+async function viewDetail(id){
+  const res=await fetch(`/api/admin/registrations/${id}`,{headers});
+  const{data:r}=await res.json();
+  const fields=[['Full Name',r.full_name],['WhatsApp',r.whatsapp_number],['Email',r.email],['Age',r.age],['College',r.college_name],['Hostel/City',r.hostel_city],['Source',r.source],['Job Types',r.job_types],['Hours',r.available_hours],['English',r.english_level],['Device',r.device_access],['Experience',r.work_experience],['Family Name',r.family_member_name],['Family Phone',r.family_member_phone],['Status',r.status],['Submitted',r.submitted_at]];
+  document.getElementById('modalContent').innerHTML=fields.map(([l,v])=>`<div class="modal-row"><div class="modal-label">${l}</div><div class="modal-value">${esc(v)||'—'}</div></div>`).join('');
+  document.getElementById('detailModal').classList.add('open');
+}
+function closeModal(){document.getElementById('detailModal').classList.remove('open')}
+document.getElementById('detailModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal()});
+loadData();
+</script>
+</body>
+</html>

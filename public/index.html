@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RemoteRise — Client Registration</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="logo"><div class="logo-icon">🚀</div><div class="logo-text">Remote<span>Rise</span></div></div>
+  <div class="nav-contacts">
+    <a href="https://wa.me/918235850493" class="nav-contact" target="_blank">💬 +91 82358 50493</a>
+    <a href="https://wa.me/916203054040" class="nav-contact" target="_blank">💬 +91 62030 54040</a>
+  </div>
+</nav>
+<div class="hiring-banner"><p>🔥 Current Batch Hiring Open Till <strong>10 May 2026</strong> — Register Now! &nbsp;|&nbsp; <span style="font-weight:400;opacity:.9">New batches keep coming — don't miss this one!</span></p></div>
+<div class="hero">
+  <div class="hero-badge">✨ 100% Placement Record</div>
+  <h1>Start Your <span>Work From Home</span><br>Career Today</h1>
+  <p>We train you, we place you. Pay only after your first salary — zero risk for you.</p>
+  <div class="stats-row">
+    <div class="stat-pill">🎯 <strong>100%</strong> Interview Success</div>
+    <div class="stat-pill">💰 Salary <strong>₹30K–35K + Allowances</strong></div>
+    <div class="stat-pill">🔒 <strong>Refund</strong> if not placed</div>
+  </div>
+</div>
+<div class="how-section"><div class="how-inner">
+  <div class="how-title"><div class="label">How RemoteRise Works</div><h2>We Don't Just Find You a Job — We Get You Selected</h2></div>
+  <div class="how-grid">
+    <div class="how-card"><div class="icon">🎯</div><h3>Personal Training</h3><p>1-on-1 interview prep session via Google Meet before every interview</p></div>
+    <div class="how-card"><div class="icon">💼</div><h3>Job Links Access</h3><p>We source exclusive WFH job openings you won't find on your own</p></div>
+    <div class="how-card"><div class="icon">🔄</div><h3>4 Attempts</h3><p>We give you up to 4 interview chances — we don't give up on you</p></div>
+    <div class="how-card"><div class="icon">💰</div><h3>Pay After Salary</h3><p>Our main fee comes only after you receive your first month salary</p></div>
+  </div>
+</div></div>
+<div class="progress-wrap"><div class="progress-card">
+  <div class="progress-steps"><div class="ps active" id="ps1"></div><div class="ps" id="ps2"></div><div class="ps" id="ps3"></div><div class="ps" id="ps4"></div></div>
+  <div class="progress-label" id="progressLabel">Step 1 of 4</div>
+</div></div>
+<div class="form-area">
+  <form id="mainForm" novalidate>
+    <div class="section-card"><div class="section-head"><div class="section-num">01</div><div><h2>Personal Details</h2><p>Basic information about you</p></div></div>
+      <div class="row">
+        <div class="field" id="f-name"><label>Full Name <span class="req">*</span></label><input type="text" id="fullName" name="Full Name" placeholder="Enter your full name"><div class="error-msg">Please enter your full name</div></div>
+        <div class="field" id="f-phone"><label>WhatsApp Number <span class="req">*</span></label><input type="tel" id="phone" name="WhatsApp Number" placeholder="10-digit number" maxlength="10"><div class="error-msg">Enter valid 10-digit number</div></div>
+      </div>
+      <div class="row">
+        <div class="field" id="f-email"><label>Email Address <span class="req">*</span></label><input type="email" id="email" name="Email" placeholder="your@email.com"><div class="error-msg">Enter a valid email address</div></div>
+        <div class="field"><label>Age</label><input type="number" id="age" name="Age" placeholder="e.g. 21" min="16" max="35"></div>
+      </div>
+      <div class="row">
+        <div class="field" id="f-college"><label>College Name <span class="req">*</span></label><input type="text" id="college" name="College Name" placeholder="Your college name"><div class="error-msg">Please enter your college name</div></div>
+        <div class="field"><label>Hostel / City</label><input type="text" id="hostel" name="Hostel/City" placeholder="Hostel name or city"></div>
+      </div>
+      <div class="field"><label>How did you find RemoteRise?</label><div class="chip-group">
+        <label><input type="radio" name="source" value="Friend">👥 Friend</label>
+        <label><input type="radio" name="source" value="Hostel">🏠 Hostel</label>
+        <label><input type="radio" name="source" value="College">🎓 College</label>
+        <label><input type="radio" name="source" value="WhatsApp">💬 WhatsApp</label>
+        <label><input type="radio" name="source" value="Other">✨ Other</label>
+      </div></div>
+    </div>
+    <div class="section-card"><div class="section-head"><div class="section-num">02</div><div><h2>Job Preferences</h2><p>Tell us what kind of work suits you</p></div></div>
+      <div class="field"><label>Preferred Job Type (select all that apply)</label><div class="chip-group">
+        <label><input type="checkbox" name="jobType" value="Data Entry">📊 Data Entry</label>
+        <label><input type="checkbox" name="jobType" value="Telecalling">📞 Telecalling</label>
+        <label><input type="checkbox" name="jobType" value="Customer Support">💬 Customer Support</label>
+        <label><input type="checkbox" name="jobType" value="Social Media">📱 Social Media</label>
+        <label><input type="checkbox" name="jobType" value="Any">✅ Any Job</label>
+      </div></div>
+      <div class="row">
+        <div class="field"><label>Daily Available Hours</label><select id="hours" name="Available Hours"><option value="">Select hours</option><option>2–4 hours</option><option>4–6 hours</option><option>6–8 hours</option><option>Full time (8+)</option></select></div>
+        <div class="field"><label>English Speaking Level</label><select id="english" name="English Level"><option value="">Select level</option><option>Basic</option><option>Conversational</option><option>Fluent</option></select></div>
+      </div>
+      <div class="field"><label>Device & Internet Access</label><div class="chip-group">
+        <label><input type="radio" name="device" value="Laptop + Internet">💻 Laptop + Internet</label>
+        <label><input type="radio" name="device" value="Only Phone">📱 Only Phone</label>
+        <label><input type="radio" name="device" value="Need Help">❓ Need Help</label>
+      </div></div>
+      <div class="field"><label>Any Previous Work Experience?</label><textarea id="experience" name="Work Experience" placeholder="Briefly describe any jobs, internships or freelance work. Write 'Fresher' if none."></textarea></div>
+    </div>
+    <div class="section-card"><div class="section-head"><div class="section-num">03</div><div><h2>Family Reference</h2><p>One trusted contact for our records</p></div></div>
+      <div class="row">
+        <div class="field" id="f-refName"><label>Family Member Name <span class="req">*</span></label><input type="text" id="refName" name="Family Member Name" placeholder="Parent or sibling name"><div class="error-msg">Please enter a reference name</div></div>
+        <div class="field" id="f-refPhone"><label>Their WhatsApp Number <span class="req">*</span></label><input type="tel" id="refPhone" name="Family Member Phone" placeholder="10-digit number" maxlength="10"><div class="error-msg">Enter valid 10-digit number</div></div>
+      </div>
+    </div>
+    <div class="section-card"><div class="section-head"><div class="section-num">04</div><div><h2>Fee & Agreement</h2><p>Transparent pricing — pay after you earn</p></div></div>
+      <div class="fee-row">
+        <div class="fee-box assessment"><div class="amt">₹8,000</div><div class="lbl">Assessment Fee<br>₹6,000 Refundable if not placed</div></div>
+        <div class="fee-box post"><div class="amt">₹30,000</div><div class="lbl">After 1st Month Salary<br>Pay only when you earn</div></div>
+      </div>
+      <div class="benefits-box"><div class="benefits-title">💼 Job Benefits Included</div><div class="benefits-tags">
+        <span class="benefit-tag">💰 Salary ₹30K–35K/month</span><span class="benefit-tag">🌙 Night Allowance</span><span class="benefit-tag">⚡ Extra Work Allowance</span><span class="benefit-tag">🏥 Health Benefits</span><span class="benefit-tag">✅ Full Time Job Benefits</span>
+      </div></div>
+      <div class="terms-list">
+        <div class="term-item"><div class="term-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div>I will pay ₹8,000 assessment fee before training begins.</div>
+        <div class="term-item"><div class="term-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div>I will pay ₹30,000 after receiving my first month salary.</div>
+        <div class="term-item"><div class="term-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div>RemoteRise will provide up to 4 interview attempts to get me placed.</div>
+        <div class="term-item"><div class="term-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div>If I am not placed after 4 attempts, ₹6,000 will be refunded (₹2,000 is non-refundable as processing fee).</div>
+        <div class="term-item"><div class="term-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div>I will share my salary credit screenshot upon receiving it.</div>
+        <div class="term-item"><div class="term-check"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div>Job links and training material are confidential and not to be shared.</div>
+      </div>
+      <label class="agree-label" id="f-agree"><input type="checkbox" id="agreeCheck"><span>I, <strong id="nameDisplay">—</strong>, confirm that I have read and agree to all the above terms and conditions of RemoteRise.</span></label>
+      <br>
+      <button type="submit" class="submit-btn">Submit My Application →</button>
+      <div class="secure-note">🔒 Your information is safe and confidential</div>
+    </div>
+  </form>
+  <div class="section-card success-screen" id="successScreen">
+    <div class="success-icon">✓</div><h2>Application Received! 🎉</h2>
+    <p>Welcome aboard, <strong id="successName"></strong>!<br><br>Our team will reach out to you on WhatsApp within <strong>24 hours</strong> to begin your onboarding. Your WFH career starts now — get ready!</p>
+    <a href="https://wa.me/918235850493?text=Hi%20RemoteRise!%20I%20just%20submitted%20my%20application." class="whatsapp-btn" target="_blank">💬 Message Us on WhatsApp</a>
+  </div>
+  <div class="footer">© 2024 RemoteRise · All rights reserved · Contact: +91 82358 50493</div>
+</div>
+<script>
+document.getElementById('fullName').addEventListener('input',function(){document.getElementById('nameDisplay').textContent=this.value.trim()||'—'});
+function updateProgress(){const n=document.getElementById('fullName').value.trim(),p=document.getElementById('phone').value.trim(),c=document.getElementById('college').value.trim(),r=document.getElementById('refName').value.trim(),a=document.getElementById('agreeCheck').checked;let d=0;if(n&&p)d++;if(c)d++;if(r)d++;if(a)d++;for(let i=1;i<=4;i++){const e=document.getElementById('ps'+i);e.className='ps';if(i<d)e.classList.add('done');else if(i===d||(d===0&&i===1))e.classList.add('active')}document.getElementById('progressLabel').textContent=['Step 1 of 4','Step 2 of 4','Step 3 of 4','Step 4 of 4','Complete ✓'][Math.min(d,4)]}
+document.querySelectorAll('input,select,textarea').forEach(e=>{e.addEventListener('input',updateProgress);e.addEventListener('change',updateProgress)});
+function setErr(id,s){const e=document.getElementById(id);if(e)e.classList.toggle('has-error',s)}
+const vP=v=>/^[6-9]\d{9}$/.test(v),vE=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+document.getElementById('mainForm').addEventListener('submit',async function(e){e.preventDefault();const n=document.getElementById('fullName').value.trim(),p=document.getElementById('phone').value.trim(),em=document.getElementById('email').value.trim(),c=document.getElementById('college').value.trim(),rn=document.getElementById('refName').value.trim(),rp=document.getElementById('refPhone').value.trim(),ag=document.getElementById('agreeCheck').checked;let ok=true;setErr('f-name',!n);if(!n)ok=false;setErr('f-phone',!vP(p));if(!vP(p))ok=false;setErr('f-email',!vE(em));if(!vE(em))ok=false;setErr('f-college',!c);if(!c)ok=false;setErr('f-refName',!rn);if(!rn)ok=false;setErr('f-refPhone',!vP(rp));if(!vP(rp))ok=false;const al=document.getElementById('f-agree');if(!ag){al.style.borderColor='#ef4444';al.style.background='#fff5f5';ok=false}else{al.style.borderColor='';al.style.background=''}if(!ok){document.querySelector('.has-error')?.scrollIntoView({behavior:'smooth',block:'center'});return}const btn=document.querySelector('.submit-btn');btn.textContent='Submitting...';btn.disabled=true;const fd=new FormData(this);try{const r=await fetch('/api/register',{method:'POST',body:fd,headers:{'Accept':'application/json'}});const j=await r.json();if(j.ok){this.style.display='none';document.getElementById('successScreen').style.display='block';document.getElementById('successName').textContent=n;window.scrollTo({top:0,behavior:'smooth'})}else{btn.textContent='Submit My Application →';btn.disabled=false;alert(j.errors?j.errors.join('\n'):'Something went wrong.')}}catch(err){btn.textContent='Submit My Application →';btn.disabled=false;alert('Network error. Please check your connection.')}});
+</script>
+</body>
+</html>
